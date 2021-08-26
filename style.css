@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    height: 100vh;
+    margin: 0;
+}
+
+.grid-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    height: 600px;
+    width: 600px;
+}
+
+.grid div {
+    color: rgba(255, 255, 255, 0.5);
+    width: 5%;
+    height: 5%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.ship {
+    background-color: blue;
+}
+
+.enemy {
+    background-color: red;
+}
+
+.bam {
+    background-color: green;
+}
