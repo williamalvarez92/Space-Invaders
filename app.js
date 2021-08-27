@@ -1,45 +1,38 @@
 function init() {
 
-    // Elements
+    // ### Elements
 
     const grid = document.querySelector('.grid')
-        //Battlefield
+
+    /// ### Grid
+
     const width = 20
     const numCells = width * width
     const cells = []
-    const ShootingCells = []
 
-    // Consts
+    /// ### Consts
+
     const ship = 'ship'
     const enemy = 'enemy'
     const bam = 'bam'
     const numAliens = 1
 
-    // Positioning
+    // ### Positioning
+
     //Ship
-    const shipStatPos = numCells - width
-    let currentShipPos = shipStatPos
-        //Ship laser
-    const startLaser = currentShipPos - width
-    const currentLaser = startLaser
-        //Enemy position
-    const EnemyPos = 0
-    const currentEnemyPos = EnemyPos
+    const startShip = numCells - width
+    let currentShipPos = startShip
 
+    //Enemy
+    const startEnemy = 0
+    let currentEnemyPos = startEnemy
+    const enemyRow = width - 1
 
-    // Grid creator
-    function GridCreator() {
-        for (let i = 0; i < numCells; i++) {
-            const cell = document.createElement('div')
-            cell.innerText = i
-            grid.appendChild(cell)
-            cells.push(cell)
-        }
-        addShip(shipStatPos)
-        addEnemy(0)
-    }
+    //Laser
+    const startLaser = startShip
+    let currentLaserPos = startLaser
 
-    //  Adds/Removals
+    //  ### Adds/Removals
 
     // Ship
 
@@ -57,32 +50,65 @@ function init() {
         cells[index].classList.add(enemy)
     }
 
-
-    function RemoveEnemy(index) {
+    function removeEnemy(index) {
         cells[index].classList.remove(enemy)
     }
-    // Ship laser
 
-    function ShipLaserAdd() {
-        console.log(startLaser)
-            // cells[index - width].classList.add(bam)
-        for (let i = 0; numCells - width; i++) {
-            cells[i * width].classList.add(bam)
-        }
+    // Laser
+
+    function addLaser(index) {
+        cells[index].classList.add(bam)
     }
 
+    function removeLaser(index) {
+        cells[index].classList.remove(bam)
+    }
+    //   ### Intervals
 
+    // Enemy 
 
+    function enemyMove() {
+        setInterval(function interEnemy(index) {
+            if (currentEnemyPos !== index && currentEnemyPos < numCells - width - 1) {
+                removeEnemy(currentEnemyPos), currentEnemyPos++
+            } else {
+                console.log('Game Over')
+                console.log(currentEnemyPos)
+            }
+            addEnemy(currentEnemyPos)
+        }, 1000)
+    }
 
+    // Laser
 
+    function laserMove() {
+        setInterval(function interLaser(index) {
+            if (currentShipPos !== index && currentShipPos > width) {
+                removeLaser(currentShipPos), currentShipPos -= width
+            } else {
+                console.log('Game Over')
+            }
+            addLaser(currentShipPos)
 
+        }, 10)
+    }
 
+    // ### Grid creator (DONT TOUCH!)
 
+    function GridCreator() {
+        for (let i = 0; i < numCells; i++) {
+            const cell = document.createElement('div')
+            cell.innerText = i
+            grid.appendChild(cell)
+            cells.push(cell)
+        }
+        addShip(startShip)
+        addEnemy(startEnemy)
+        enemyMove()
 
+    }
 
-
-
-    // CONTROlS (DONT TOUCH!)
+    // ### Control (DONT TOUCH!)
 
     function movingShip(event) {
         // console.log(event.keyCode)
@@ -100,22 +126,21 @@ function init() {
             currentShipPos--
         } else if (key === space) {
             console.log('BAM!')
-            ShipLaserAdd(0)
+            laserMove()
+        } else if (key === h) {
+            enemyMove()
         } else {
             console.log('Pong sound!')
         }
         addShip(currentShipPos)
-
-
     }
 
-    GridCreator(currentShipPos)
 
+    // START
+
+    GridCreator()
 
     document.addEventListener('keydown', movingShip)
-
-
-
 
 }
 
