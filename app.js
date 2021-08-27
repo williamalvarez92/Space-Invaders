@@ -24,13 +24,13 @@ function init() {
     let currentShipPos = startShip
 
     //Enemy
-    const startEnemy = 0
+    const startEnemy = 1
     let currentEnemyPos = startEnemy
     const enemyRow = width - 1
 
     //Laser
-    const startLaser = currentShipPos
-    let currentLaserPos = startLaser
+    // const startLaser = currentShipPos
+    // let currentLaserPos = startLaser
 
     //  ### Adds/Removals
 
@@ -47,11 +47,31 @@ function init() {
     // Enemy
 
     function addEnemy(index) {
-        cells[index].classList.add(enemy)
+        for (let i = 0; i < width / 1; i++) {
+            if (i % 2 === 0) {
+                cells[index + (i + (width + i))].classList.add(enemy)
+                    // cells[index + (i + (width * 2))].classList.add(enemy)
+                    // cells[index + (i + (width * 4))].classList.add(enemy)
+            }
+        }
+
     }
+    // {
+    //   for (let i = 0; i < numCells; i++) {
+    //     const cell = document.createElement('div')
+    //     cell.innerText = i
+    //     grid.appendChild(cell)
+    //     cells.push(cell)
+    //   }
 
     function removeEnemy(index) {
-        cells[index].classList.remove(enemy)
+        for (let i = 0; i < width / 1; i++) {
+            if (i % 2 === 0) {
+                cells[index + (i + (width + i))].classList.remove(enemy)
+                    // cells[index + (i + width * 2)].classList.remove(enemy)
+                    // cells[index + (i + (width * 4))].classList.remove(enemy)
+            }
+        }
     }
 
     // Laser
