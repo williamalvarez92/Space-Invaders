@@ -7,6 +7,7 @@ function init() {
     const width = 20
     const numCells = width * width
     const cells = []
+    const ShootingCells = []
 
     // Consts
     const ship = 'ship'
@@ -20,7 +21,10 @@ function init() {
     let currentShipPos = shipStatPos
         //Ship laser
     const startLaser = currentShipPos - width
-    let currentLaser = startLaser
+    const currentLaser = startLaser
+        //Enemy position
+    const EnemyPos = 0
+    const currentEnemyPos = EnemyPos
 
 
     // Grid creator
@@ -35,7 +39,9 @@ function init() {
         addEnemy(0)
     }
 
-    //Ship movements
+    //  Adds/Removals
+
+    // Ship
 
     function addShip(index) {
         cells[index].classList.add(ship)
@@ -45,9 +51,38 @@ function init() {
         cells[index].classList.remove(ship)
     }
 
+    // Enemy
+
     function addEnemy(index) {
         cells[index].classList.add(enemy)
     }
+
+
+    function RemoveEnemy(index) {
+        cells[index].classList.remove(enemy)
+    }
+    // Ship laser
+
+    function ShipLaserAdd() {
+        console.log(startLaser)
+            // cells[index - width].classList.add(bam)
+        for (let i = 0; numCells - width; i++) {
+            cells[i * width].classList.add(bam)
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    // CONTROlS (DONT TOUCH!)
 
     function movingShip(event) {
         // console.log(event.keyCode)
@@ -64,41 +99,15 @@ function init() {
         } else if (key === left && currentShipPos > numCells - width) {
             currentShipPos--
         } else if (key === space) {
-            console.log(currentShipPos)
-            ShipLaserAdd(currentShipPos)
-        } else if (key === h) {
-            Shipshoot(currentShipPos)
+            console.log('BAM!')
+            ShipLaserAdd(0)
         } else {
             console.log('Pong sound!')
         }
         addShip(currentShipPos)
 
+
     }
-
-    // Ship laser movements
-
-    function ShipLaserAdd(currentShipPos) {
-        console.log('BAM')
-        cells[currentShipPos - width].classList.add(bam)
-    }
-
-    function ShipLaserRemove(currentShipPos) {
-        console.log('BAM')
-        cells[currentShipPos - width].classList.remove(bam)
-    }
-
-    function Shipshoot(currentShipPos) {
-        // for (let i = 0; i < width; i++) {
-        if (cells[currentShipPos - width].targent.classList.contains('ship')) {
-            console.log('Beep')
-        } else {
-            console.log('nah')
-        }
-    }
-    // }
-
-
-
 
     GridCreator(currentShipPos)
 
