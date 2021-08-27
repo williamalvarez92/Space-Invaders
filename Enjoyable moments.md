@@ -1,5 +1,6 @@
 # Some of the most enjoyable moments while coding:
 
-- Day 1: Experimenting with different type of enemies formation (some by randomly playing with numbers)
-![Screenshot from 2021-08-27 16-48-05](https://user-images.githubusercontent.com/83907621/131155990-e236ecbc-cb0d-46f4-b61f-45b29f66738d.png)
+- Day 1: Experimenting with different type of enemies formation. From one small lonely invader to the classic formation
+![Screenshot from 2021-08-27 19-06-31](https://user-images.githubusercontent.com/83907621/131172978-acd39124-4503-4545-a8d2-e64b9adb8415.png)
+
 
