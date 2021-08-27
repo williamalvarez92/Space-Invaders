@@ -3,6 +3,6 @@
 - Day 1: Experimenting with different type of enemies formation. From one small lonely invader to the classic formation
 ![Screenshot from 2021-08-27 19-40-00](https://user-images.githubusercontent.com/83907621/131187338-7f6fd9f0-0795-4a4e-b882-26e1293897b7.png)
 ![Screenshot from 2021-08-27 19-22-47](https://user-images.githubusercontent.com/83907621/131187427-36093215-a01b-4739-8488-fc231bd11f87.png)
-
+![Screenshot from 2021-08-27 19-06-31](https://user-images.githubusercontent.com/83907621/131187478-60b79c70-8055-4515-87ed-a0ef0871ddf5.png)
 
 
