@@ -30,3 +30,5 @@ The rest of cells will be for invaders and shooting laser. All with one column a
 - Gifs
 - Leading board
 - Cool theme (tbd extra div where you can choose aliens or upload your own (from url only))
+
+
