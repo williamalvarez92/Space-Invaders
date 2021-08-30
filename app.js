@@ -15,6 +15,7 @@ function init() {
     const ship = 'ship'
     const enemy = 'enemy'
     const bam = 'bam'
+    const boom = 'boom'
 
     // ### Positioning
 
@@ -100,6 +101,14 @@ function init() {
     function removeLaser(index) {
         cells[index].classList.remove(bam)
     }
+    // Evil laser
+    function addEvilLaser(index) {
+        cells[index].classList.add(boom)
+    }
+
+    function removeEvilLaser(index) {
+        cells[index].classList.remove(boom)
+    }
     //   ### Intervals
 
     // Enemy DONE
@@ -135,7 +144,7 @@ function init() {
             else {
                 console.log('GAME OVER')
             }
-        }, 100)
+        }, 10000)
     }
 
     // Laser DONE
@@ -151,6 +160,20 @@ function init() {
             }
         }, 50)
     }
+
+    // Evil laser
+    function EvilLaserMove(index) {
+        setInterval(function interEvilLaser() {
+            if (index > width - 1) {
+                removeLaser(index),
+                    index += width,
+                    addLaser(index)
+            } else {
+                removeLaser(index)
+            }
+        }, 50)
+    }
+
 
     // ### Grid creator (DONT TOUCH!)
 
@@ -179,7 +202,6 @@ function init() {
         const right = 39
         const left = 37
         const h = 72
-
 
         if (key === right && currentShipPos < numCells - 1) {
             currentShipPos++
