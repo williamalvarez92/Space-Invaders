@@ -108,16 +108,21 @@ function init() {
 
     function enemyMove() {
         setInterval(function interEnemy() {
-            if (currentEnemyPos % width !== 5 && currentEnemyPos % width !== 0 && currentEnemyPos < numCells - width - 1 && currentEnemyPos % width !== width - 1) {
+            if (currentEnemyPos % width !== 5 && currentEnemyPos < numCells - width - 1 && currentEnemyPos % (width * 2) >= width) {
                 console.log(currentEnemyPos)
                 removeEnemy(currentEnemyPos), currentEnemyPos++,
                     addEnemy(currentEnemyPos)
-            } else if (currentEnemyPos % width === 5) {
+            } else if (currentEnemyPos % width === 5 && currentEnemyPos % width !== 0 && currentEnemyPos % (width * 2) >= width) {
                 console.log('HIIII')
-                removeEnemy(currentEnemyPos), currentEnemyPos + width, currentEnemyPos--,
+                removeEnemy(currentEnemyPos), currentEnemyPos += width,
+                    addEnemy(currentEnemyPos)
+            } else if (currentEnemyPos % (width * 2) < width && currentEnemyPos % width !== 0) {
+                removeEnemy(currentEnemyPos), currentEnemyPos--,
+                    addEnemy(currentEnemyPos)
+            } else if (currentEnemyPos % width === 0 && currentEnemyPos % (width * 2) < width) {
+                removeEnemy(currentEnemyPos), currentEnemyPos += width,
                     addEnemy(currentEnemyPos)
             }
-
 
             // for (let i = 0; i < numCells - 1; i++) {
             //   if (i % 2 === 0 && i < width) {
