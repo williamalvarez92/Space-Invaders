@@ -10,7 +10,7 @@ function init() {
     const numCells = width * width
     const cells = []
     const row = width - 1
-    const addColumn = width + width
+    const addColumn = row + row
 
     /// ### Classes
 
@@ -25,8 +25,8 @@ function init() {
     let currentShipPos = startShip
 
     //Enemy
-    const startEnemy = 2
-    const currentEnemyPos = startEnemy
+    const startEnemy = 0
+    let currentEnemyPos = startEnemy
     const rowsWithEnemies = 4
     const totalRowsEnemies = rowsWithEnemies * 2
     const columnsWithEnemies = 7
@@ -51,11 +51,11 @@ function init() {
     // Enemy
 
     function addEnemy(index) {
-        cells[index].classList.add(enemy)
-            // for (let i = 0; i < width * 3; i++) {
-            //     if (i % 2 ** 2 === 0) {
-            //         cells[index + (i + (width + i))].classList.add(enemy)
-            //     }
+        // cells[index].classList.add(enemy)
+        for (let i = 0; i < width * totalRowsEnemies; i++) {
+            if (i % 2 === 0 && i % width <= totalColumnsEnemies) {
+                cells[index + i].classList.add(enemy)
+            }
             //     // i % 2 === 0 && 
             //     //     console.log(index)
             //     // cells[index + (i + width * 2)].classList.add(enemy)
@@ -64,6 +64,7 @@ function init() {
             //     // cells[index + (i + (width * 2))].classList.add(enemy)
             //     // cells[index + (i + (width * 4))].classList.add(enemy)
             // }
+        }
     }
 
     // {
@@ -75,22 +76,22 @@ function init() {
     //   }
 
     function removeEnemy(index) {
-        cells[index].classList.remove(enemy)
-            // for (let i = 0; i < width * 3; i++) {
-            //     if (i % 2 ** 2 === 0) {
-            //         cells[index + (i + (width + i))].classList.remove(enemy)
+        // cells[index].classList.remove(enemy)
+        for (let i = 0; i < width * totalRowsEnemies; i++) {
+            if (i % 2 === 0 && i % width <= totalColumnsEnemies) {
+                cells[index + i].classList.remove(enemy)
 
-        //     }
-        //     // cells[index + (i + width * 2)].classList.remove(enemy)
-        //     // cells[index + (i + width * 3)].classList.remove(enemy)
-        //     // cells[index + (i + width * 4)].classList.remove(enemy)
+            }
+            //     // cells[index + (i + width * 2)].classList.remove(enemy)
+            //     // cells[index + (i + width * 3)].classList.remove(enemy)
+            //     // cells[index + (i + width * 4)].classList.remove(enemy)
 
-        //     // cells[index + (i + width * 2)].classList.remove(enemy)
-        //     // cells[index + (i + (width * 4))].classList.remove(enemy)
-        // }
+            //     // cells[index + (i + width * 2)].classList.remove(enemy)
+            //     // cells[index + (i + (width * 4))].classList.remove(enemy)
+            // }
+        }
+
     }
-
-
     // Laser
 
     function addLaser(index) {
@@ -106,20 +107,27 @@ function init() {
 
     function enemyMove() {
         setInterval(function interEnemy() {
-            for (let i = 0; i < width * totalRowsEnemies; i++) {
-                if (i % 2 === 0 && i % width <= totalColumnsEnemies && currentEnemyPos === i - (width * 2)) {
-                    addEnemy(currentEnemyPos), currentEnemyPos + i,
-                        removeEnemy(currentEnemyPos + i),
-                        addEnemy(currentEnemyPos + i)
-                }
-                // if (currentEnemyPos < numCells - width - 1) {
-                //     removeEnemy(currentEnemyPos), currentEnemyPos++
-                // } 
-                else {
-                    console.log('Game Over')
-                }
+            if (currentEnemyPos < numCells - width - 1) {
+                removeEnemy(currentEnemyPos), currentEnemyPos++,
+                    addEnemy(currentEnemyPos)
             }
-        }, 2000)
+
+
+            // for (let i = 0; i < numCells - 1; i++) {
+            //   if (i % 2 === 0 && i < width) {
+            //       addEnemy(currentEnemyPos), currentEnemyPos + i,
+            //           removeEnemy(currentEnemyPos + i),
+            //           addEnemy(currentEnemyPos + i)
+            //   }
+            // && i % width <= totalColumnsEnemies && i < width * totalRowsEnemies
+            // && i % (width * 2) === 0
+            // if (currentEnemyPos < numCells - width - 1) {
+            //     removeEnemy(currentEnemyPos), currentEnemyPos++
+            // } 
+            else {
+                console.log('Game Over')
+            }
+        }, 200000)
     }
 
     // Laser
