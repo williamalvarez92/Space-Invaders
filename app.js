@@ -9,7 +9,6 @@ function init() {
     const width = 20
     const numCells = width * width
     const cells = []
-    const row = width
 
     /// ### Classes
 
@@ -30,11 +29,8 @@ function init() {
     const totalRowsEnemies = rowsWithEnemies * 2
     const columnsWithEnemies = 7
     const totalColumnsEnemies = columnsWithEnemies * 2
-    const rightEnemy = currentEnemyPos + totalColumnsEnemies
-
-    //Laser
-    // const startLaser = currentShipPos
-    // let currentLaserPos = startLaser
+        // Posible way to find last enemy:
+        // const rightEnemy = currentEnemyPos + totalColumnsEnemies
 
     //  ### Adds/Removals
 
@@ -53,7 +49,8 @@ function init() {
     function addEnemy(index) {
         // cells[index].classList.add(enemy)
         for (let i = 0; i < width * totalRowsEnemies; i++) {
-            if (i % 2 === 0 && i % width <= totalColumnsEnemies && i % (width * 2) < width) {
+            if (i % 2 === 0 && i < width * totalRowsEnemies && i % width <= totalColumnsEnemies && i % (width * 2) < width) {
+
                 cells[index + i].classList.add(enemy)
             }
             //     // i % 2 === 0 && 
@@ -78,10 +75,11 @@ function init() {
     function removeEnemy(index) {
         // cells[index].classList.remove(enemy)
         for (let i = 0; i < width * totalRowsEnemies; i++) {
-            if (i % 2 === 0 && i % width <= totalColumnsEnemies) {
-                cells[index + i].classList.remove(enemy)
-            }
+            if (i % 2 === 0 && i < width * totalRowsEnemies && i % width <= totalColumnsEnemies && i % (width * 2) < width) {
+                console.log(index + i),
+                    cells[index + i].classList.remove(enemy)
 
+            }
         }
         //     // cells[index + (i + width * 2)].classList.remove(enemy)
         //     // cells[index + (i + width * 3)].classList.remove(enemy)
@@ -104,22 +102,21 @@ function init() {
     }
     //   ### Intervals
 
-    // Enemy 
+    // Enemy DONE
 
     function enemyMove() {
         setInterval(function interEnemy() {
-            if (currentEnemyPos % width !== 5 && currentEnemyPos < numCells - width - 1 && currentEnemyPos % (width * 2) >= width) {
-                console.log(currentEnemyPos)
+            // need to find a more responsive way to add the 5 below for the end of the enemy depending on n. of columns
+            if (currentEnemyPos < (width * totalColumnsEnemies - 2) && currentEnemyPos % width !== 5 && currentEnemyPos % (width * 2) >= width) {
                 removeEnemy(currentEnemyPos), currentEnemyPos++,
                     addEnemy(currentEnemyPos)
-            } else if (currentEnemyPos % width === 5 && currentEnemyPos % width !== 0 && currentEnemyPos % (width * 2) >= width) {
-                console.log('HIIII')
+            } else if (currentEnemyPos < (width * totalColumnsEnemies - width * 2) && currentEnemyPos % width === 5 && currentEnemyPos % width !== 0 && currentEnemyPos % (width * 2) >= width) {
                 removeEnemy(currentEnemyPos), currentEnemyPos += width,
                     addEnemy(currentEnemyPos)
-            } else if (currentEnemyPos % (width * 2) < width && currentEnemyPos % width !== 0) {
+            } else if (currentEnemyPos < (width * totalColumnsEnemies - 2) && currentEnemyPos % (width * 2) < width && currentEnemyPos % width !== 0) {
                 removeEnemy(currentEnemyPos), currentEnemyPos--,
                     addEnemy(currentEnemyPos)
-            } else if (currentEnemyPos % width === 0 && currentEnemyPos % (width * 2) < width) {
+            } else if (currentEnemyPos < (width * totalColumnsEnemies - width * 2) && currentEnemyPos % width === 0 && currentEnemyPos % (width * 2) < width) {
                 removeEnemy(currentEnemyPos), currentEnemyPos += width,
                     addEnemy(currentEnemyPos)
             }
@@ -136,12 +133,12 @@ function init() {
             //     removeEnemy(currentEnemyPos), currentEnemyPos++
             // } 
             else {
-                console.log('Game Over')
+                console.log('GAME OVER')
             }
-        }, 1000)
+        }, 100)
     }
 
-    // Laser
+    // Laser DONE
 
     function laserMove(index) {
         setInterval(function interLaser() {
@@ -159,9 +156,10 @@ function init() {
 
     function GridCreator() {
         for (let i = 0; i < numCells; i++) {
-            const iPer = i % 40
+            const iwidth = i % width
+            const irow = i % 40
             const cell = document.createElement('div')
-            cell.innerText = iPer
+            cell.innerText = iwidth
             grid.appendChild(cell)
             cells.push(cell)
         }
@@ -191,7 +189,7 @@ function init() {
             console.log('BAM!')
             laserMove(currentShipPos)
         } else if (key === h) {
-            console.log(rightEnemy)
+            console.log(width * totalColumnsEnemies)
         } else {
             console.log('Pong sound!')
         }
