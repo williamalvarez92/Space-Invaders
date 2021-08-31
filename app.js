@@ -3,6 +3,7 @@ function init() {
     // ### Elements
 
     const grid = document.querySelector('.grid')
+    const shipCell = document.getElementsByClassName('.test')
 
     /// ### Grid
 
@@ -16,15 +17,6 @@ function init() {
     const enemy = 'enemy'
     const bam = 'bam'
     const boom = 'boom'
-
-    // ### Cell contains
-
-    function containShip(index) {
-        let cellToCheck = cells[index]
-        if (cellToCheck.target.classList.contain('ship') === true) {
-            console.log('yes')
-        }
-    }
 
     // ### Positioning
 
@@ -111,6 +103,7 @@ function init() {
         cells[index].classList.remove(bam)
     }
 
+
     // Evil laser
 
     function addEvilLaser(index) {
@@ -153,7 +146,8 @@ function init() {
             //     removeEnemy(currentEnemyPos), currentEnemyPos++
             // } 
             else {
-                console.log('GAME OVER')
+                // window.alert('GAME OVER'),
+                //     window.location.reload()
             }
         }, 3000)
     }
@@ -162,10 +156,10 @@ function init() {
 
     function laserMove(index) {
         setInterval(function interLaser() {
-            if (index > width - 1) {
+            if (index > width - 1 && grid.classList.contains('bam') === false) {
                 removeLaser(index),
-                    index -= width,
-                    addLaser(index)
+                    index -= width
+                addLaser(index)
             } else {
                 removeLaser(index)
             }
@@ -193,6 +187,9 @@ function init() {
             evilLaserMove(randomLaser)
         }, 5000)
     }
+
+    // Laser Delayer
+
 
     // function EvilLaserRandom() {
     //     let randomLaser = cells[(Math.floor(Math.random() * totalColumnsEnemies))]
@@ -241,7 +238,6 @@ function init() {
         const left = 37
         const h = 72
         const t = 84
-        const randomLaser = currentEnemyPos + (Math.floor(Math.random() * totalColumnsEnemies))
 
         if (key === right && currentShipPos < numCells - 1) {
             currentShipPos++
@@ -251,14 +247,25 @@ function init() {
             console.log('BAM!')
             laserMove(currentShipPos)
         } else if (key === h) {
-            console.log(currentEnemyPos)
-
+            console.log(grid)
         } else if (key === t) {
-            console.log(evilLaserMove(randomLaser))
+            shipChecker()
         } else {
             console.log('Pong sound!')
         }
         addShip(currentShipPos)
+    }
+
+    // ### Cell checker
+
+    // Ship
+
+    function shipChecker() {
+        if (grid.classList.contains('test') === true) {
+            console.log('yes')
+        } else {
+            console.log('no')
+        }
     }
 
 
@@ -267,8 +274,7 @@ function init() {
     GridCreator()
 
 
-    document.addEventListener('keydown', movingShip)
-        // document.addEventListener('DOMContentLoaded', checker)
+    document.addEventListener('keyup', movingShip)
 }
 
 window.addEventListener('DOMContentLoaded', init)
