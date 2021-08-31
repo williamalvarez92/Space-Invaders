@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: black;
+    background-color: gray;
     height: 100vh;
     margin: 0;
 }
@@ -30,7 +30,7 @@ body {
 }
 
 .ship {
-    background-color: blue;
+    background-image: url('invader.gif');
 }
 
 .enemy {
