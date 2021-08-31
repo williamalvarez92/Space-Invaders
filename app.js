@@ -220,7 +220,7 @@ function init() {
             const iwidth = i % width
             const irow = i % 40
             const cell = document.createElement('div')
-            cell.innerText = irow
+            cell.innerText = i
             grid.appendChild(cell)
             cells.push(cell)
         }
@@ -233,7 +233,7 @@ function init() {
     // ### Control (DONT TOUCH!)
 
     function movingShip(event) {
-        console.log(event.keyCode)
+        // console.log(event.keyCode)
         removeShip(currentShipPos)
         const key = event.keyCode
         const space = 32
@@ -251,7 +251,7 @@ function init() {
             console.log('BAM!')
             laserMove(currentShipPos)
         } else if (key === h) {
-            containShip(currentShipPos)
+            console.log(currentEnemyPos)
 
         } else if (key === t) {
             console.log(evilLaserMove(randomLaser))
