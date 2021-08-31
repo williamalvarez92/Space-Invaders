@@ -1,4 +1,4 @@
-# Some of the most enjoyable moments while coding:
+# Some of the craziest moments while coding:
 
 - Experimenting with different type of enemies formation.
 ![Screenshot from 2021-08-27 19-40-00](https://user-images.githubusercontent.com/83907621/131187338-7f6fd9f0-0795-4a4e-b882-26e1293897b7.png)
