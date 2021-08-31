@@ -3,7 +3,6 @@ function init() {
     // ### Elements
 
     const grid = document.querySelector('.grid')
-    const shipCell = document.getElementsByClassName('.test')
 
     /// ### Grid
 
@@ -14,9 +13,15 @@ function init() {
     // ### Classes
 
     const ship = 'ship'
-    const enemy = 'enemy'
     const bam = 'bam'
     const boom = 'boom'
+    const smallenemy1 = 'smallenemy1'
+    const smallenemy2 = 'smallenemy2'
+    const middleenemy1 = 'middleenemy1'
+    const middleenemy2 = 'middleenemy2'
+    const bigenemy1 = 'bigenemy1'
+    const bigenemy2 = 'bigenemy2'
+
 
     // ### Positioning
 
@@ -29,10 +34,10 @@ function init() {
 
     const startEnemy = width + 1
     let currentEnemyPos = startEnemy
-    const rowsWithEnemies = 4
-    const totalRowsEnemies = rowsWithEnemies * 2
-    const columnsWithEnemies = 7
-    const totalColumnsEnemies = columnsWithEnemies * 2
+    const rowsWithEnemies = 5
+    const totalRowsEnemies = rowsWithEnemies
+    const columnsWithEnemies = 11
+    const totalColumnsEnemies = columnsWithEnemies
         // Posible way to find last enemy:
         // const rightEnemy = currentEnemyPos + totalColumnsEnemies
 
@@ -51,11 +56,15 @@ function init() {
     // Enemy
 
     function addEnemy(index) {
-        // cells[index].classList.add(enemy)
         for (let i = 0; i < width * totalRowsEnemies; i++) {
-            if (i % 2 === 0 && i < width * totalRowsEnemies && i % width <= totalColumnsEnemies && i % (width * 2) < width) {
-                cells[index + i].classList.add(enemy)
+            if (i < width * totalRowsEnemies && i % width <= totalColumnsEnemies) {
+                cells[index + i].classList.add(smallenemy1)
             }
+            //Alternative rows
+            // && i % (width * 2) < width
+            //Alternative columns
+            // i % 2 === 0
+
             //     // i % 2 === 0 && 
             //     //     console.log(index)
             //     // cells[index + (i + width * 2)].classList.add(enemy)
@@ -78,19 +87,24 @@ function init() {
     function removeEnemy(index) {
         // cells[index].classList.remove(enemy)
         for (let i = 0; i < width * totalRowsEnemies; i++) {
-            if (i % 2 === 0 && i < width * totalRowsEnemies && i % width <= totalColumnsEnemies && i % (width * 2) < width) {
-                cells[index + i].classList.remove(enemy)
-
+            if (i < width * totalRowsEnemies && i % width <= totalColumnsEnemies) {
+                cells[index + i].classList.remove(smallenemy1)
             }
         }
-        //     // cells[index + (i + width * 2)].classList.remove(enemy)
-        //     // cells[index + (i + width * 3)].classList.remove(enemy)
-        //     // cells[index + (i + width * 4)].classList.remove(enemy)
-
-        //     // cells[index + (i + width * 2)].classList.remove(enemy)
-        //     // cells[index + (i + (width * 4))].classList.remove(enemy)
-        // }
     }
+    //Alternative rows
+    // && i % (width * 2) < width
+    //Alternative columns
+    // i % 2 === 0
+
+    //     // cells[index + (i + width * 2)].classList.remove(enemy)
+    //     // cells[index + (i + width * 3)].classList.remove(enemy)
+    //     // cells[index + (i + width * 4)].classList.remove(enemy)
+
+    //     // cells[index + (i + width * 2)].classList.remove(enemy)
+    //     // cells[index + (i + (width * 4))].classList.remove(enemy)
+    // }
+
 
 
     // Laser
@@ -156,7 +170,7 @@ function init() {
 
     function laserMove(index) {
         setInterval(function interLaser() {
-            if (index > width - 1 && grid.classList.contains('bam') === false) {
+            if (index > width - 1) {
                 removeLaser(index),
                     index -= width
                 addLaser(index)
@@ -274,7 +288,7 @@ function init() {
     GridCreator()
 
 
-    document.addEventListener('keyup', movingShip)
+    document.addEventListener('keydown', movingShip)
 }
 
 window.addEventListener('DOMContentLoaded', init)

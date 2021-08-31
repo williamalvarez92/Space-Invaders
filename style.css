@@ -3,13 +3,25 @@
 }
 
 body {
-    background-color: gray;
-    height: 100vh;
+    background-color: black;
     margin: 0;
 }
 
+.big-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.intro {
+    display: flex;
+    justify-content: center;
+    color: springgreen;
+    text-align: center;
+    padding-top: 100px;
+    padding-right: 80px;
+}
+
 .grid-container {
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,24 +35,83 @@ body {
 }
 
 .grid div {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0);
     width: 5%;
     height: 5%;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    /* border: 1px solid rgba(255, 255, 255, 0.5); */
+}
+
+.points-board {
+    color: aliceblue;
+    display: flex;
+    flex-direction: row;
+}
+
+.mode-selector {
+    color: aliceblue;
+    display: flex;
+    flex-direction: row;
 }
 
 .ship {
-    background-image: url('invader.gif');
+    background-image: url("files/ship1.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.enemy {
-    background-color: red;
+.smallenemy1 {
+    background-image: url("files/smallalien1.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.smallenemy2 {
+    background-image: url("files/smallalien2.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.middleenemy1 {
+    background-image: url("files/middlealien1.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.middleenemy2 {
+    background-image: url("files/middlealien2.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bigenemy1 {
+    background-image: url("files/bigalien1.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bigenemy2 {
+    background-image: url("files/bigalien2.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .bam {
-    background-color: green;
+    background-image: url("files/laser.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .boom {
-    background-color: white;
+    background-image: url("files/enemylaser.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
