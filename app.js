@@ -1,26 +1,41 @@
 function init() {
 
-    // ### Elements
+    // // ### Elements
 
     const grid = document.querySelector('.grid')
+    const livesHTML = document.getElementById('lives')
 
-    /// ### Grid
-
-    const width = 20
-    const numCells = width * width
-    const cells = []
 
     // ### Classes
 
     const ship = 'ship'
     const bam = 'bam'
     const boom = 'boom'
+    const explosion = 'explosion'
     const smallenemy1 = 'smallenemy1'
     const smallenemy2 = 'smallenemy2'
     const middleenemy1 = 'middleenemy1'
     const middleenemy2 = 'middleenemy2'
     const bigenemy1 = 'bigenemy1'
     const bigenemy2 = 'bigenemy2'
+    const enemy = 'enemy'
+
+    // ### Game stats
+
+    // Grid
+
+    const width = 20
+    const numCells = width * width
+    const cells = []
+
+    // Lives
+
+    const lives = 3
+    let life = lives
+
+    // Score
+
+    const score = 0
 
 
     // ### Positioning
@@ -32,74 +47,86 @@ function init() {
 
     //Enemy
 
-    const startEnemy = width
-    let currentEnemyPos = startEnemy
+
     const rowsWithEnemies = 5
     const columnsWithEnemies = 11
-        // Posible way to find last enemy:
-        // const rightEnemy = currentEnemyPos + totalColumnsEnemies
+
+
+    function gridCreator() {
+        for (let i = 0; i < numCells; i++) {
+            const iwidth = i % width
+            const irow = i % 40
+            const cell = document.createElement('div')
+            cell.innerText = i
+            grid.appendChild(cell)
+            cells.push(cell)
+            livesHTML.innerText = `Life: ${life}`
+        }
+    }
+
+
+    const enemies = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+        41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52,
+        61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72,
+        81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92,
+        101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112
+    ]
+    console.log(enemies)
+
 
     //  ### Adds/Removals
+
+    // Shortcuts
+
+    // Enemies
+
+    function addingTag() {
+        for (let i = 0; i < enemies.length; i++) {
+            cells[enemies[i]].classList.add(enemy)
+        }
+    }
+
+    function addEnemies1() {
+        addingTag()
+        for (let i = 0; i < enemies.length; i++) {
+            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.add(smallenemy1) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.add(middleenemy1) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.add(bigenemy1) }
+        }
+    }
+
+    function addEnemies2() {
+        addingTag()
+        for (let i = 0; i < enemies.length; i++) {
+            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.add(smallenemy2) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.add(middleenemy2) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.add(bigenemy2) }
+        }
+    }
+
+    function removeEnemies1() {
+        for (let i = 0; i < enemies.length; i++) {
+            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.remove(smallenemy1) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.remove(middleenemy1) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.remove(bigenemy1) }
+        }
+    }
+
+    function removeEnemies2() {
+        for (let i = 0; i < enemies.length; i++) {
+            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.remove(smallenemy2) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.remove(middleenemy2) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.remove(bigenemy2) }
+        }
+    }
 
     // Ship
 
     function addShip(index) {
         cells[index].classList.add(ship)
+
     }
 
     function removeShip(index) {
         cells[index].classList.remove(ship)
     }
 
-    // Enemy
+    // Explosions
 
-    function addEnemy(num) {
-        for (let i = 0; i < width * rowsWithEnemies; i++) {
-            if (num === 1) {
-                if (i < width && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.add(smallenemy1)
-                } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.add(middleenemy1)
-                } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.add(bigenemy1)
-                }
-            } else if (num === 2) {
-                if (i < width && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.add(smallenemy2)
-                } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.add(middleenemy2)
-                } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.add(bigenemy2)
-                }
-            }
-        }
-    }
-    //Alternative rows
-    // && i % (width * 2) < width
-    //Alternative columns
-    // i % 2 === 0
-
-    function removeEnemy(num) {
-        // cells[index].classList.remove(enemy)
-        for (let i = 0; i < width * rowsWithEnemies; i++) {
-            if (num === 1) {
-                if (i < width && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.remove(smallenemy1)
-                } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.remove(middleenemy1)
-                } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.remove(bigenemy1)
-                }
-            } else if (num === 2) {
-                if (i < width && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.remove(smallenemy2)
-                } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.remove(middleenemy2)
-                } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
-                    cells[currentEnemyPos + i].classList.remove(bigenemy2)
-                }
-            }
-        }
+    function addExplosion(index) {
+        cells[index].classList.add(explosion)
     }
 
     // Laser
@@ -112,8 +139,7 @@ function init() {
         cells[index].classList.remove(bam)
     }
 
-
-    // Evil laser
+    // Evil enemy laser
 
     function addEvilLaser(index) {
         cells[index].classList.add(boom)
@@ -122,115 +148,63 @@ function init() {
     function removeEvilLaser(index) {
         cells[index].classList.remove(boom)
     }
-    //   ### Intervals
 
-    // Enemy DONE
 
-    function enemyMove() {
-        setInterval(function interEnemy() {
-            // need to find a more responsive way to add the 5 below for the end of the enemy depending on n. of columns
-            if (currentEnemyPos % 2 === 1 && currentEnemyPos % width !== 8 && currentEnemyPos % (width * 2) >= width) {
-                removeEnemy(1), currentEnemyPos++,
-                    addEnemy(2)
-            } else if (currentEnemyPos % 2 === 0 && currentEnemyPos % width !== 8 && currentEnemyPos % (width * 2) >= width) {
-                removeEnemy(2), currentEnemyPos++,
-                    addEnemy(1)
-            } else if (currentEnemyPos < (width * rowsWithEnemies * 3 - width) && currentEnemyPos % width === 8 && currentEnemyPos % width !== 0 && currentEnemyPos % (width * 2) >= width) {
-                removeEnemy(2), currentEnemyPos += width,
-                    addEnemy(1)
-            } else if (currentEnemyPos % 2 === 1 && currentEnemyPos % (width * 2) <= width && currentEnemyPos % width !== 0) {
-                removeEnemy(2), currentEnemyPos--,
-                    addEnemy(1)
-            } else if (currentEnemyPos % 2 === 0 && currentEnemyPos % (width * 2) <= width && currentEnemyPos % width !== 0) {
-                removeEnemy(1), currentEnemyPos--,
-                    addEnemy(2)
-            } else if (currentEnemyPos < (width * rowsWithEnemies * 3 - width) && currentEnemyPos % width === 0 && currentEnemyPos % (width * 2) <= width) {
-                removeEnemy(1), currentEnemyPos += width,
-                    addEnemy(2)
-            } else {
-                console.log('GAME OVER')
+    // ### Movers
+
+    // Enemy mover (Renamed them to movers as it makes it easier for me to understand)
+
+    function enemyMover() {
+        if ((enemies[0] % 2 === 0 && enemies[0] % width !== 0 && enemies[enemies.length - 1] % width !== width - 1 && enemies[0] % (width * 2) >= width) || (enemies[0] % 2 === 0 && enemies[0] % width === 0 && enemies[0] % width !== width - 1 && enemies[0] % (width * 2) >= width)) {
+            removeEnemies2()
+            removeEnemies1()
+            for (let i = 0; i < enemies.length; i++) {
+                enemies[i] += 1
             }
-        }, 1000)
-    }
-
-    // Laser DONE
-
-    function laserMove(index) {
-        setInterval(function interLaser() {
-            if (index > width - 1) {
-                removeLaser(index),
-                    index -= width
-                addLaser(index)
-            } else {
-                removeLaser(index)
+            addEnemies1()
+        } else if ((enemies[0] % 2 === 1 && enemies[0] % width !== 0 && enemies[enemies.length - 1] % width !== width - 1 && enemies[0] % (width * 2) >= width) || (enemies[0] % 2 === 1 && enemies[0] % width === 0 && enemies[0] % width !== width - 1 && enemies[0] % (width * 2) >= width)) {
+            removeEnemies2()
+            removeEnemies1()
+            for (let i = 0; i < enemies.length; i++) {
+                enemies[i] += 1
             }
-        }, 50)
-    }
-
-    // Evil laser move
-    function evilLaserMove(index) {
-        setInterval(function interEvilLaser() {
-            if (index < (numCells - width)) {
-                removeEvilLaser(index),
-                    index += width,
-                    addEvilLaser(index)
-            } else {
-                removeEvilLaser(index)
+            addEnemies2()
+        } else if ((enemies[0] % 2 === 0 && enemies[0] % width !== 0 && enemies[enemies.length - 1] % width === width - 1 && enemies[0] % (width * 2) >= width) || (enemies[0] % 2 === 0 && enemies[0] % width === 0 && enemies[0] % width !== width - 1 && enemies[0] % (width * 2) < width)) {
+            removeEnemies2()
+            removeEnemies1()
+            for (let i = 0; i < enemies.length; i++) {
+                enemies[i] += width
             }
-        }, 300)
-    }
-
-    // Evil laser random
-
-    function evilLaserRandom() {
-        setInterval(function interEvilLaser() {
-            const randomLaser = currentEnemyPos + (Math.floor(Math.random() * columnsWithEnemies))
-            evilLaserMove(randomLaser)
-        }, 5000)
-    }
-
-    // Laser Delayer
-
-
-    // function EvilLaserRandom() {
-    //     let randomLaser = cells[(Math.floor(Math.random() * totalColumnsEnemies))]
-    //     for (let i = 0; i < 10; i++) {
-    //         if (i >= currentEnemyPos && i < totalColumnsEnemies) {
-
-    //             EvilLaserMove(randomLaser)
-    //         }
-    //     }
-    // }
-
-    // Checker
-
-    // function checker() {
-    //     for (let i = 0; i < numCells - width - 1; i++) {
-    //         // Enemy destroy ship
-    //         if ()
-    //     }
-    // }
-
-    // ### Grid creator (DONT TOUCH!)
-
-    function GridCreator() {
-        for (let i = 0; i < numCells; i++) {
-            const iwidth = i % width
-            const irow = i % 40
-            const cell = document.createElement('div')
-            cell.innerText = i
-            grid.appendChild(cell)
-            cells.push(cell)
+            addEnemies1()
+            removeEnemies2()
+        } else if ((enemies[0] % 2 === 1 && enemies[0] % width !== 0 && enemies[enemies.length - 1] % width === width - 1 && enemies[0] % (width * 2) >= width) || (enemies[0] % 2 === 1 && enemies[0] % width === 0 && enemies[0] % width !== width - 1 && enemies[0] % (width * 2) < width)) {
+            removeEnemies2()
+            removeEnemies1()
+            for (let i = 0; i < enemies.length; i++) {
+                enemies[i] += width
+            }
+            addEnemies2()
+        } else if (enemies[0] % 2 === 0 && enemies[0] % width !== 0 && enemies[0] % width !== width - 1 && enemies[0] % (width * 2) < width) {
+            removeEnemies2()
+            removeEnemies1()
+            for (let i = 0; i < enemies.length; i++) {
+                enemies[i] -= 1
+            }
+            addEnemies1()
+        } else if (enemies[0] % 2 === 1 && enemies[0] % width !== 0 && enemies[0] % width !== width - 1 && enemies[0] % (width * 2) < width) {
+            removeEnemies2()
+            removeEnemies1()
+            for (let i = 0; i < enemies.length; i++) {
+                enemies[i] -= 1
+            }
+            addEnemies2()
         }
-        addShip(startShip)
-        addEnemy(currentEnemyPos)
-        enemyMove()
-        evilLaserRandom()
+        gameOver()
     }
+    const enemyId = setInterval(enemyMover, 1000)
 
-    // ### Control (DONT TOUCH!)
 
-    function movingShip(event) {
+    function shipMover(event) {
         // console.log(event.keyCode)
         removeShip(currentShipPos)
         const key = event.keyCode
@@ -238,44 +212,307 @@ function init() {
         const right = 39
         const left = 37
         const h = 72
-        const t = 84
 
         if (key === right && currentShipPos < numCells - 1) {
             currentShipPos++
         } else if (key === left && currentShipPos > numCells - width) {
             currentShipPos--
         } else if (key === space) {
-            console.log('BAM!')
-            laserMove(currentShipPos)
+            laserMover(currentShipPos)
         } else if (key === h) {
-            console.log(18 % (width * 2))
-        } else if (key === t) {
-            shipChecker()
+            console.log()
         } else {
             console.log('Pong sound!')
         }
         addShip(currentShipPos)
+
     }
 
-    // ### Cell checker
+    function laserMover(index) {
+        setInterval(function interLaser() {
+            removeLaser(index)
+            if (index <= numCells - 1 && index >= width && cells[index].classList.contains('enemy') === false && cells[index].classList.contains('boom') === false) {
+                index -= width
+                addLaser(index)
+            } else if (cells[index].classList.contains('enemy') === true && cells[index].classList.contains('bam') === true) {
+                removeLaser(index)
 
-    // Ship
+            }
+        }, 50)
+    }
 
-    function shipChecker() {
-        if (grid.classList.contains('test') === true) {
-            console.log('yes')
-        } else {
-            console.log('no')
+    // Evil laser random
+    const evilLaserActId = setInterval(evilLaserRandom, 500)
+
+    function evilLaserRandom() {
+        const randomLaser = enemies[Math.floor(Math.random() * enemies.length)]
+        evilLaserMover(randomLaser)
+    }
+
+    // Evil laser move
+
+    function evilLaserMover(index) {
+        setInterval(function interEvilLaser() {
+            if (index > 0 && index < numCells - width - 1) {
+                removeEvilLaser(index),
+                    index += width,
+                    addEvilLaser(index)
+            } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === false) {
+                removeShip(index),
+                    removeEvilLaser(index)
+            } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === true && cells[index].classList.contains('boom') === true) {
+                removeShip(index), addExplosion(index)
+                life--
+                livesHTML.innerText = `Life: ${life}`
+            }
+        }, 300)
+    }
+
+    // ### Cleaner (Couldnt find a more efficient way of doing this)
+
+    function cleaner() {
+        setInterval(function gridCleaner() {
+            for (let i = 0; i < numCells - 1; i++) {
+                if (cells[i].classList.contains('explosion')) {
+                    cells[i].classList.remove(explosion)
+                }
+            }
+        }, 1500)
+    }
+
+
+    // ## GAME STARTS 
+
+    gridCreator()
+    addShip(currentShipPos)
+    addEnemies1()
+    enemyMover()
+    evilLaserRandom()
+    cleaner()
+
+
+    document.addEventListener('keydown', shipMover)
+
+    // Game Over
+
+    function gameOver() {
+        for (let i = 0; i < enemies.length; i++) {
+            if ((cells[currentShipPos].classList.contains('enemy') && cells[currentShipPos].classList.contains('ship')) || life === 0) { console.log('GAME OVER'), clearInterval(enemyId), clearInterval(evilLaserActId) }
         }
     }
 
 
-    // START
-
-    GridCreator()
 
 
-    document.addEventListener('keydown', movingShip)
+
+    // function enemyMove() {
+    // //     setInterval(function interEnemy() {
+
+    // //         if (currentEnemyPos % 2 === 1 && currentEnemyPos % width !== 8 && currentEnemyPos % (width * 2) >= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos++,
+    // //                 addEnemy(currentEnemyPos)
+    // //         } else if (currentEnemyPos % 2 === 0 && currentEnemyPos % width !== 8 && currentEnemyPos % (width * 2) >= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos++,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos < (width * rowsWithEnemies * 3 - width) && currentEnemyPos % width === 8 && currentEnemyPos % width !== 0 && currentEnemyPos % (width * 2) >= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos += width,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos % 2 === 1 && currentEnemyPos % (width * 2) <= width && currentEnemyPos % width !== 0) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos--,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos % 2 === 0 && currentEnemyPos % (width * 2) <= width && currentEnemyPos % width !== 0) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos--,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos < (width * rowsWithEnemies * 3 - width) && currentEnemyPos % width === 0 && currentEnemyPos % (width * 2) <= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos += width,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else {
+    // //             console.log('GAME OVER')
+    // //         }
+    // //     }, 2000)
+    // // }
+    // const startEnemy = 0
+    // const currentEnemyPos = startEnemy
+    //     // Posible way to find last enemy:
+    //     // const rightEnemy = currentEnemyPos + totalColumnsEnemies
+
+    // // function addEnemy(startingPoint) {
+    // //     for (let i = 0; i < width * rowsWithEnemies; i++) {
+    // //         if (startingPoint % 2 === 1) {
+
+    // //             if (i < width && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(smallenemy1)
+    // //             } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(middleenemy1)
+    // //             } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(bigenemy1)
+    // //             }
+    // //         } else if (startingPoint % 2 === 0) {
+    // //             if (i < width && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(smallenemy2)
+    // //             } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(middleenemy2)
+    // //             } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(bigenemy2)
+    // //             }
+    // //         }
+    // //     }
+    // // }
+
+
+
+    // // function removeEnemy(startingPoint) {
+    // //     for (let i = 0; i < width * rowsWithEnemies; i++) {
+    // //         if (startingPoint % 2 === 1) {
+    // //             if (i < width && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.remove(enemy), cells[currentEnemyPos + i].classList.remove(smallenemy1)
+    // //             } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.remove(enemy), cells[currentEnemyPos + i].classList.remove(middleenemy1)
+    // //             } else if (i >= width * 3 && i <= width * 6 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.remove(enemy), cells[currentEnemyPos + i].classList.remove(bigenemy1)
+    // //             }
+    // //         } else if (startingPoint % 2 === 0) {
+    // //             if (i < width && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.remove(enemy), cells[currentEnemyPos + i].classList.remove(smallenemy2)
+    // //             } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.remove(enemy), cells[currentEnemyPos + i].classList.remove(middleenemy2)
+    // //             } else if (i >= width * 3 && i <= width * 6 && i % width <= columnsWithEnemies) {
+    // //                 cells[currentEnemyPos + i].classList.remove(enemy), cells[currentEnemyPos + i].classList.remove(bigenemy2)
+    // //             } else if (i >= width * 3 && i <= width * 6 && i % width <= columnsWithEnemies && cells[i].classList.contains('bam')) {
+    // //                 cells[i].classList.remove(bigenemy1)
+    // //             }
+    // //         }
+    // //     }
+    // // }
+
+    // // function enemyMove() {
+    // //     setInterval(function interEnemy() {
+
+    // //         if (currentEnemyPos % 2 === 1 && currentEnemyPos % width !== 8 && currentEnemyPos % (width * 2) >= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos++,
+    // //                 addEnemy(currentEnemyPos)
+    // //         } else if (currentEnemyPos % 2 === 0 && currentEnemyPos % width !== 8 && currentEnemyPos % (width * 2) >= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos++,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos < (width * rowsWithEnemies * 3 - width) && currentEnemyPos % width === 8 && currentEnemyPos % width !== 0 && currentEnemyPos % (width * 2) >= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos += width,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos % 2 === 1 && currentEnemyPos % (width * 2) <= width && currentEnemyPos % width !== 0) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos--,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos % 2 === 0 && currentEnemyPos % (width * 2) <= width && currentEnemyPos % width !== 0) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos--,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else if (currentEnemyPos < (width * rowsWithEnemies * 3 - width) && currentEnemyPos % width === 0 && currentEnemyPos % (width * 2) <= width) {
+    // //             removeEnemy(currentEnemyPos), currentEnemyPos += width,
+    // //                 addEnemy(currentEnemyPos), console.log(deadEnemies)
+    // //         } else {
+    // //             console.log('GAME OVER')
+    // //         }
+    // //     }, 2000)
+    // // }
+    // // if (cells[i] === cells[currentEnemyPos] && cells[i].classList.contains('bam') === true) {
+    // //     cells[currentEnemyPos].classList.remove(smallenemy1), cells[currentEnemyPos].classList.remove(middleenemy1), cells[currentEnemyPos].classList.remove(bigenemy1)}
+    // //  if (cells[num].classList.contains('bam') === true) {
+    // //     cells[currentEnemyPos + i].classList.remove(smallenemy1), cells[currentEnemyPos + i].classList.remove(middleenemy1), cells[currentEnemyPos + i].classList.remove(bigenemy1)}
+
+    // // } else if (cells[startingPoint].classList.contains('bam') === false && startingPoint % 2 === 0) {
+    // //     if (cells[i].classList.contains('bam')) {
+    // //         cells[currentEnemyPos + i].classList.remove(bigenemy1)}
+
+    // //Alternative rows
+    // // && i % (width * 2) < width
+    // //Alternative columns
+    // // i % 2 === 0
+
+
+
+    // //   ### Intervals
+
+    // // Enemy DONE
+
+
+
+
+
+    // // Laser DONE
+    // const deadEnemies = []
+
+    // function laserMove(index) {
+    //     setInterval(function interLaser() {
+
+    //         if (index <= numCells - 1 && index >= width && cells[index].classList.contains('enemy') === false && cells[index].classList.contains('boom') === false) {
+    //             removeLaser(index),
+    //                 index -= width
+    //             addLaser(index)
+    //         } else if (cells[index].classList.contains('enemy') === true && cells[index].classList.contains('bam') === true) {
+    //             removeLaser(index)
+    //             deadEnemies.push(index)
+    //         } else if (index < width && cells[index].classList.contains('enemy') === false && cells[index].classList.contains('boom') === false) {
+    //             removeLaser(index)
+    //         }
+    //     }, 50)
+    // }
+
+
+
+    // // Evil laser move
+
+    // function evilLaserMove(index) {
+    //     setInterval(function interEvilLaser() {
+    //         if (index > 0 && index < numCells - width - 1) {
+    //             removeEvilLaser(index),
+    //                 index += width,
+    //                 addEvilLaser(index)
+    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === false) {
+    //             removeShip(index),
+    //                 removeEvilLaser(index)
+    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === true && cells[index].classList.contains('boom') === true) {
+    //             removeShip(index), addExplosion(index)
+    //             life--
+    //             livesHTML.innerText = `Life: ${life}`
+    //         }
+    //     }, 300)
+    // }
+
+    // // Evil laser random
+
+    // function evilLaserRandom() {
+    //     setInterval(function interEvilLaser() {
+    //         const randomLaser = currentEnemyPos + (Math.floor(Math.random() * columnsWithEnemies))
+    //         evilLaserMove(randomLaser)
+    //     }, 500)
+    // }
+
+    // // ### Cleaner
+
+    // function cleaner() {
+    //     setInterval(function gridCleaner() {
+    //         for (let i = 0; i < numCells - 1; i++) {
+    //             if (cells[i].classList.contains('explosion')) {
+    //                 cells[i].classList.remove(explosion)
+    //             }
+    //         }
+    //     }, 1500)
+    // }
+
+    // // START
+
+    // gridCreator()
+    //     // lifecount()
+    //     // addShip(startShip)
+    //     // addEnemy(currentEnemyPos)
+    //     // enemyMove()
+    //     // evilLaserRandom()
+    //     // cleaner()
+
+
+    // const noLivesId = setInterval(noLives, 100)
+
+    // function noLives() { if (life === 0) { alert('GAME OVER'), clearInterval(noLivesId) } }
+    // noLives()
+    // document.addEventListener('keydown', movingShip)
+
 }
 
 window.addEventListener('DOMContentLoaded', init)
