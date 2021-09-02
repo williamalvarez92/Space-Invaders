@@ -4,7 +4,7 @@
 
 body {
     font-family: 'VT323', monospace;
-    background-color: black;
+    background-color: gray;
     margin: 0;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 .grid div {
-    color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 1);
     width: 5%;
     height: 5%;
     /* border: 1px solid rgba(255, 255, 255, 0.5); */
@@ -123,6 +123,13 @@ body {
 
 .boom {
     background-image: url("files/enemylaser.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.explosion {
+    background-image: url("files/explosion.png");
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
