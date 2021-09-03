@@ -4,6 +4,7 @@ function init() {
 
     const grid = document.querySelector('.grid')
     const livesHTML = document.getElementById('lives')
+    const scoreHTML = document.getElementById('score')
 
 
     // ### Classes
@@ -35,7 +36,7 @@ function init() {
 
     // Score
 
-    const score = 0
+    let score = 0
 
 
     // ### Positioning
@@ -50,19 +51,6 @@ function init() {
 
     const rowsWithEnemies = 5
     const columnsWithEnemies = 11
-
-
-    function gridCreator() {
-        for (let i = 0; i < numCells; i++) {
-            const iwidth = i % width
-            const irow = i % 40
-            const cell = document.createElement('div')
-            cell.innerText = i
-            grid.appendChild(cell)
-            cells.push(cell)
-            livesHTML.innerText = `Life: ${life}`
-        }
-    }
 
 
     const enemies = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
@@ -86,29 +74,63 @@ function init() {
         }
     }
 
-    function addEnemies1() {
-        addingTag()
+    function removeingTag() {
         for (let i = 0; i < enemies.length; i++) {
-            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.add(smallenemy1) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.add(middleenemy1) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.add(bigenemy1) }
+            cells[enemies[i]].classList.remove(enemy)
+        }
+    }
+
+    function addEnemies1() {
+        for (let i = 0; i < enemies.length; i++) {
+            if (deadEnemies.includes(i) === false) {
+                if (i <= 12) {
+                    addingTag(), cells[enemies[i]].classList.add(smallenemy1)
+                } else if (i > 12 && i <= 36) {
+                    addingTag(), cells[enemies[i]].classList.add(middleenemy1)
+                } else if (i > 36 && i <= 60) {
+                    addingTag(), cells[enemies[i]].classList.add(bigenemy1)
+                }
+            }
         }
     }
 
     function addEnemies2() {
-        addingTag()
         for (let i = 0; i < enemies.length; i++) {
-            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.add(smallenemy2) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.add(middleenemy2) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.add(bigenemy2) }
+            if (deadEnemies.includes(i) === false) {
+                if (i <= 12) {
+                    addingTag(), cells[enemies[i]].classList.add(smallenemy2)
+                } else if (i > 12 && i <= 36) {
+                    addingTag(), cells[enemies[i]].classList.add(middleenemy2)
+                } else if (i > 36 && i <= 60) {
+                    addingTag(), cells[enemies[i]].classList.add(bigenemy2)
+                }
+            }
         }
     }
 
     function removeEnemies1() {
+        removeingTag()
         for (let i = 0; i < enemies.length; i++) {
-            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.remove(smallenemy1) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.remove(middleenemy1) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.remove(bigenemy1) }
+            if (i >= 0 && i <= 12) {
+                cells[enemies[i]].classList.remove(smallenemy1)
+            } else if (i > 12 && i <= 36) {
+                cells[enemies[i]].classList.remove(middleenemy1)
+            } else if (i > 36 && i <= 60) {
+                cells[enemies[i]].classList.remove(bigenemy1)
+            }
         }
     }
 
     function removeEnemies2() {
+        removeingTag()
         for (let i = 0; i < enemies.length; i++) {
-            if (i >= 0 && i <= 12) { cells[enemies[i]].classList.remove(smallenemy2) } else if (i > 12 && i <= 36) { cells[enemies[i]].classList.remove(middleenemy2) } else if (i > 36 && i <= 60) { cells[enemies[i]].classList.remove(bigenemy2) }
+            if (i >= 0 && i <= 12) {
+                cells[enemies[i]].classList.remove(smallenemy2)
+            } else if (i > 12 && i <= 36) {
+                cells[enemies[i]].classList.remove(middleenemy2)
+            } else if (i > 36 && i <= 60) {
+                cells[enemies[i]].classList.remove(bigenemy2)
+            }
         }
     }
 
@@ -132,11 +154,15 @@ function init() {
     // Laser
 
     function addLaser(index) {
-        cells[index].classList.add(bam)
+        if (index >= 0) {
+            cells[index].classList.add(bam)
+        }
     }
 
     function removeLaser(index) {
-        cells[index].classList.remove(bam)
+        if (index >= 0) {
+            cells[index].classList.remove(bam)
+        }
     }
 
     // Evil enemy laser
@@ -203,6 +229,7 @@ function init() {
     }
     const enemyId = setInterval(enemyMover, 1000)
 
+    // Ship
 
     function shipMover(event) {
         // console.log(event.keyCode)
@@ -212,6 +239,7 @@ function init() {
         const right = 39
         const left = 37
         const h = 72
+        const e = 69
 
         if (key === right && currentShipPos < numCells - 1) {
             currentShipPos++
@@ -220,7 +248,9 @@ function init() {
         } else if (key === space) {
             laserMover(currentShipPos)
         } else if (key === h) {
-            console.log()
+            console.log(deadEnemies)
+        } else if (key === e) {
+            console.log(enemies)
         } else {
             console.log('Pong sound!')
         }
@@ -228,18 +258,39 @@ function init() {
 
     }
 
+    const deadEnemies = []
+
     function laserMover(index) {
         setInterval(function interLaser() {
-            removeLaser(index)
-            if (index <= numCells - 1 && index >= width && cells[index].classList.contains('enemy') === false && cells[index].classList.contains('boom') === false) {
-                index -= width
-                addLaser(index)
-            } else if (cells[index].classList.contains('enemy') === true && cells[index].classList.contains('bam') === true) {
-                removeLaser(index)
-
+            if (index >= 0 && cells[index].classList.contains('enemy') === true && cells[index].classList.contains('bam') === true) {
+                removeLaser(index), addExplosion(index)
+                const deadlist = enemies.indexOf(index)
+                deadEnemies.push(deadlist)
+                score++
+            } else {
+                removeLaser(index),
+                    index -= width,
+                    addLaser(index)
             }
-        }, 50)
+        }, 100)
     }
+
+    //   function evilLaserMover(index) {
+    //     setInterval(function interEvilLaser() {
+    //         if (index > 0 && index < numCells - width - 1) {
+    //             removeEvilLaser(index),
+    //                 index += width,
+    //                 addEvilLaser(index)
+    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === false) {
+    //             removeShip(index),
+    //                 removeEvilLaser(index)
+    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === true && cells[index].classList.contains('boom') === true) {
+    //             removeShip(index), addExplosion(index)
+    //             life--
+    //             livesHTML.innerText = `Life: ${life}`
+    //         }
+    //     }, 300)
+    // }
 
     // Evil laser random
     const evilLaserActId = setInterval(evilLaserRandom, 500)
@@ -263,7 +314,6 @@ function init() {
             } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === true && cells[index].classList.contains('boom') === true) {
                 removeShip(index), addExplosion(index)
                 life--
-                livesHTML.innerText = `Life: ${life}`
             }
         }, 300)
     }
@@ -283,6 +333,21 @@ function init() {
 
     // ## GAME STARTS 
 
+    // Grid
+
+    function gridCreator() {
+        for (let i = 0; i < numCells; i++) {
+            const iwidth = i % width
+            const irow = i % 40
+            const cell = document.createElement('div')
+
+            grid.appendChild(cell)
+            cells.push(cell)
+            livesHTML.innerText = `Life: ${life}`
+            scoreHTML.innerText = `Score: ${score}`
+        }
+    }
+
     gridCreator()
     addShip(currentShipPos)
     addEnemies1()
@@ -297,7 +362,9 @@ function init() {
 
     function gameOver() {
         for (let i = 0; i < enemies.length; i++) {
-            if ((cells[currentShipPos].classList.contains('enemy') && cells[currentShipPos].classList.contains('ship')) || life === 0) { console.log('GAME OVER'), clearInterval(enemyId), clearInterval(evilLaserActId) }
+            if ((cells[currentShipPos].classList.contains('enemy') && cells[currentShipPos].classList.contains('ship')) || life === 0) {
+                console.log('GAME OVER'), clearInterval(enemyId), clearInterval(evilLaserActId)
+            } else if (enemies.length === deadEnemies.length) { console.log('YOU WIN') }
         }
     }
 
