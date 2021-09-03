@@ -248,9 +248,9 @@ function init() {
         } else if (key === space) {
             laserMover(currentShipPos)
         } else if (key === h) {
-            console.log(deadEnemies)
-        } else if (key === e) {
             console.log(enemies)
+        } else if (key === e) {
+            console.log(sortingOutDeaths(deadEnemies))
         } else {
             console.log('Pong sound!')
         }
@@ -267,6 +267,7 @@ function init() {
                 const deadlist = enemies.indexOf(index)
                 deadEnemies.push(deadlist)
                 score++
+                scoreHTML.innerText = `Score: ${score}`
             } else {
                 removeLaser(index),
                     index -= width,
@@ -275,22 +276,6 @@ function init() {
         }, 100)
     }
 
-    //   function evilLaserMover(index) {
-    //     setInterval(function interEvilLaser() {
-    //         if (index > 0 && index < numCells - width - 1) {
-    //             removeEvilLaser(index),
-    //                 index += width,
-    //                 addEvilLaser(index)
-    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === false) {
-    //             removeShip(index),
-    //                 removeEvilLaser(index)
-    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === true && cells[index].classList.contains('boom') === true) {
-    //             removeShip(index), addExplosion(index)
-    //             life--
-    //             livesHTML.innerText = `Life: ${life}`
-    //         }
-    //     }, 300)
-    // }
 
     // Evil laser random
     const evilLaserActId = setInterval(evilLaserRandom, 500)
@@ -314,6 +299,8 @@ function init() {
             } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === true && cells[index].classList.contains('boom') === true) {
                 removeShip(index), addExplosion(index)
                 life--
+                livesHTML.innerText = `Life: ${life}`
+
             }
         }, 300)
     }
@@ -343,8 +330,9 @@ function init() {
 
             grid.appendChild(cell)
             cells.push(cell)
-            livesHTML.innerText = `Life: ${life}`
             scoreHTML.innerText = `Score: ${score}`
+            livesHTML.innerText = `Life: ${life}`
+
         }
     }
 
@@ -363,13 +351,30 @@ function init() {
     function gameOver() {
         for (let i = 0; i < enemies.length; i++) {
             if ((cells[currentShipPos].classList.contains('enemy') && cells[currentShipPos].classList.contains('ship')) || life === 0) {
-                console.log('GAME OVER'), clearInterval(enemyId), clearInterval(evilLaserActId)
-            } else if (enemies.length === deadEnemies.length) { console.log('YOU WIN') }
+                clearInterval(enemyId), clearInterval(evilLaserActId), alert('GAME OVER')
+            } else if (enemies.length === deadEnemies.filter((num, index) => deadEnemies.indexOf(num) === index).length) { alert('YOU WIN') }
         }
     }
 
+    //// ### CODE SCRAP YARD  
 
 
+    //   function evilLaserMover(index) {
+    //     setInterval(function interEvilLaser() {
+    //         if (index > 0 && index < numCells - width - 1) {
+    //             removeEvilLaser(index),
+    //                 index += width,
+    //                 addEvilLaser(index)
+    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === false) {
+    //             removeShip(index),
+    //                 removeEvilLaser(index)
+    //         } else if (index >= 0 && index >= numCells - width && index <= numCells - 1 && cells[index].classList.contains('ship') === true && cells[index].classList.contains('boom') === true) {
+    //             removeShip(index), addExplosion(index)
+    //             life--
+    //             livesHTML.innerText = `Life: ${life}`
+    //         }
+    //     }, 300)
+    // }
 
 
     // function enemyMove() {
