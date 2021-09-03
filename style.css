@@ -37,7 +37,8 @@ body {
 }
 
 .grid div {
-    color: rgba(0, 0, 0, 1);
+    font-size: 50px;
+    color: aliceblue;
     width: 5%;
     height: 5%;
     /* border: 1px solid rgba(255, 255, 255, 0.5); */
@@ -47,22 +48,25 @@ body {
     font-size: 25px;
     padding-left: 100px;
     width: auto;
-    height: 600px;
+    padding-bottom: 600px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
 }
 
 .points-board {
     width: auto;
-    height: 200px;
     color: aliceblue;
 }
 
-.mode-selector {
-    height: 300px;
-    width: auto;
+#start {
+    background-color: black;
+    font-size: 20px;
     color: aliceblue;
+}
+
+.block {
+    background-color: green;
 }
 
 .ship {
