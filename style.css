@@ -65,6 +65,20 @@ body {
     color: aliceblue;
 }
 
+#restart {
+    background-color: black;
+    font-size: 20px;
+    color: aliceblue;
+}
+
+#start:disabled {
+    display: none;
+}
+
+#restart:disabled {
+    display: none;
+}
+
 .block {
     background-color: green;
 }
