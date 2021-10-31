@@ -25,11 +25,16 @@
         <section class="grid-container">
             <div class="grid"></div>
             <section class="right-container">
+                <div class="controllers">
+                  <button class='buttons' onclick='leftbtn()' id='left'>👈</button>
+                  <button class='buttons' onclick='rightbtn()' id='shoot'>💥</button>
+                  <button class='buttons' onclick='shootbtn()' id='right'>👉</button>
+                </div>
                 <div class="points-board">
                     <div id="lives"></div>
                     <div id='score'></div>
-                    <button id='start' onClick="this.disabled = true">START</div>
-                      <button id='restart' onClick="window.location.reload()" onClick="this.disabled = true">RESTART</div>
+                    <div><button id='start' class='buttons' onClick="this.disabled = true">START</button></div>
+                    <div><button id='restart'  class='buttons' onClick="window.location.reload()" onClick="this.disabled = true">RESTART</button></div>
             </section>
         </section>
         <!-- <section class="right-container">

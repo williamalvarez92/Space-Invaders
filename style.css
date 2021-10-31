@@ -5,7 +5,6 @@
 body {
     font-family: 'VT323', monospace;
     background-color: black;
-    margin: 0;
 }
 
 .big-container {
@@ -59,24 +58,10 @@ body {
     color: aliceblue;
 }
 
-#start {
+.buttons {
     background-color: black;
     font-size: 20px;
     color: aliceblue;
-}
-
-#restart {
-    background-color: black;
-    font-size: 20px;
-    color: aliceblue;
-}
-
-#start:disabled {
-    display: none;
-}
-
-#restart:disabled {
-    display: none;
 }
 
 .block {
@@ -151,4 +136,36 @@ body {
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/* PHONE MEDIA QUERIES */
+
+@media (max-width: 380px){
+  #left, #right, #shoot {
+    width: 70px;
+  }
+.intro {
+  padding-top: 0;
+  padding-right: 0;
+}
+.grid{
+height: 300px;
+width: 300px;
+}
+.grid-container{
+  display:flex;
+  flex-direction: column;
+}
+.right-container {
+  display: flex;
+  padding-left: 0px;
+  align-items: center;
+  padding-bottom: 0px;
+}
+.grid div {
+  font-size: 25px;}
+.points-board{
+  padding-top: 20px;
+  flex-direction: column;
+  }
 }
