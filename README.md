@@ -6,6 +6,12 @@
 
 I have played it when I was a kid many times, it is a an icon for an aspiring software developer.
 
+🥇 Wins: Learning how to organise programming plans and becoming more confident using   JavaScript, especially using loops and booleans.
+🥋 Challenges: Being able to switch ideas once a big amount of code is written. The logic behind the main disappearance of the invaders was difficult to implement.
+👷‍♂️ My contribution: Setting up the backend. Created the comments, Log in and 
+Register, as well as user management. Styling and animating most buttons.
+
+
 In terms of difficulty it feels more or less as difficult, but at the same time I have the feeling I will learn so much from it.
 
 The plan:
