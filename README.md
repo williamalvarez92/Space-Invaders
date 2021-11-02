@@ -1,8 +1,8 @@
 # Space Invaders
 
-## This is my first project; recreating the classic:
-## Space Invaders!
+## This is my first project; recreating the classic: Space Invaders! ##
 
+### <a href="https://williamalvarez92.github.io/Space-Invaders/">Click to play life!</a> ###
 
 I have played it when I was a kid many times, it is a an icon for an aspiring software developer.
 
