@@ -4,11 +4,16 @@ function init() {
   const restartBtn = document.getElementById('restart')
 
   function restart() {
-    window.location.reload() 
+    window.location.reload()
   }
 
   function startGame() {
 
+    // Button display
+    if (startBtn.disabled === true) {
+      startBtn.style.display = 'none'
+      restartBtn.style.display = 'flex'
+    }
 
     // ### HTML Elements
 
@@ -16,9 +21,7 @@ function init() {
     const livesHTML = document.getElementById('lives')
     const scoreHTML = document.getElementById('score')
     const audio = document.getElementById('audio')
-    // 
-
-
+  
     // ### Sounds
 
     function shootingSound() {
@@ -224,7 +227,7 @@ function init() {
 
     document.addEventListener('keydown', shipMover)
 
-    // CORRELATIONOF SHIP IN GRID
+    // CORRELATION OF SHIP IN GRID
     
     const startShip = numCells - width + (width / 2 - 1)
     let currentShipPos = startShip

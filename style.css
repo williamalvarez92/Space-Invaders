@@ -1,3 +1,4 @@
+/* MAIN WEBSITE */
 * {
     box-sizing: border-box;
 }
@@ -7,9 +8,30 @@ body {
     background-color: black;
 }
 
-.big-container {
-    display: flex;
-    flex-direction: column;
+/* DISPLAYING STYLING */
+
+a{color: rgb(8, 59, 77);}
+
+#writing{
+  padding-top: 2%;
+}
+.controllers{
+  padding-top: 5%;
+  padding-bottom: 0;
+}
+.points-board {
+  width: 50%;
+  color: aliceblue;
+}
+
+.buttons {
+  background-color: black;
+  font-size: 20px;
+  color: aliceblue;
+}
+
+#restart {
+  display: none;
 }
 
 .intro {
@@ -18,25 +40,36 @@ body {
     justify-content: center;
     color: springgreen;
     text-align: center;
-    padding-top: 100px;
-    padding-right: 110px;
+    padding-right: 50%;
+}
+
+.signature{
+  color: aliceblue;
+}
+
+/* CONTAINERS */
+
+.big-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .grid-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-left: 10%;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .grid {
     display: flex;
     flex-wrap: wrap;
-    height: 600px;
-    width: 600px;
+    height: 500px;
+    width: 200%;
 }
 
 .grid div {
-    font-size: 50px;
+    font-size: 40px;
     color: aliceblue;
     width: 5%;
     height: 5%;
@@ -46,23 +79,13 @@ body {
 .right-container {
     font-size: 25px;
     padding-left: 100px;
-    width: auto;
-    padding-bottom: 600px;
+    width: 300%;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
 }
 
-.points-board {
-    width: auto;
-    color: aliceblue;
-}
-
-.buttons {
-    background-color: black;
-    font-size: 20px;
-    color: aliceblue;
-}
+/* GAME ICONS AND OTHER DISPLAY */
 
 .block {
     background-color: green;
@@ -147,6 +170,7 @@ body {
 .intro {
   padding-top: 0;
   padding-right: 0;
+  padding-left: 5%;
 }
 .grid{
 height: 300px;
@@ -161,11 +185,30 @@ width: 300px;
   padding-left: 0px;
   align-items: center;
   padding-bottom: 0px;
+  width: auto;
 }
 .grid div {
   font-size: 25px;}
+
 .points-board{
   padding-top: 20px;
   flex-direction: column;
+  text-align: center;
+  }
+
+  #writing {
+  display: none;
+}
+  #keyboardInst {
+    display: none;
+  }
+  .controllers{
+    padding-top: 5%;
+  }
+  .signature{
+    text-align: center;
+    padding-top: 1%;
+    font-size: 15px;
+    width: 100%;
   }
 }
