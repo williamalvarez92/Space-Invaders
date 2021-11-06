@@ -1,33 +1,39 @@
 # 👾 Space Invaders 👾
 
-This is my first solo project.
-
-I have played it when I was a kid many times, it is a an icon for an aspiring software engineer.
-
-It terms of difficulty it feels more or less as difficult, but at the same time I have the feeling I will learn so much from it.
+This is my first solo project. I have played it when I was a kid many times, it is a an icon for an aspiring software engineer.
 
 ##### <a href='https://williamalvarez92.github.io/Space-Invaders/'>CLICK HERE TO PLAY!</a>
 
 #### LANGUAGES AND TOOLS USED:
-- Vanilla JavaScript
+- Vanilla JavaScript<details><summary>Code used</summary>-Functions
+-EventListeners 
+-IF and OR statements
+-For loops
+-Numerous methods (.push, .forEach, etc...)
+-Responsive document elements
+-And more</details>
 - CSS
 - HTML
 - GIT
 - GIT PAGES
 
+
+There is no installation required for this project. All you will need is a web browser. The project constist of three files: `.js` `.css` `.html`
+
+
 #### THE PLANNING:
-1) Make a grid: Using eventListeners and functions <details><summary>Show details</summary>1) Make a grid: Using eventListeners and functions</details>
+
+1) Grid: <details><summary>Show details</summary>Using eventListeners and functions</details>
 </p>
 
-2) Will use classes to hide all the elements: ship, aliens, and lasers<details><summary>Show details</summary>1) Make a grid: Using eventListeners and functions</details>
+2) Elements:<details><summary>Show details</summary>Will use classes to hide all the elements: ship, aliens, and lasers</details>
 </p>
 
-3) Controls: Will use right left and space, using two formulas, one for moving and one for shooting<details><summary>Show details</summary>1) Make a grid: Using eventListeners and functions</details>
+3) Controls:<details><summary>Show details</summary>Will use right left and space, using two formulas, one for moving and one for shooting</details>
 </p>
 
-4) Cells:
-First bottom row will be the spaceship and after for the invaders. With class for the ship and invaders.
-The rest of cells will be for invaders and shooting laser. All with one column apart so that you can miss (Otherwise whats the fun) Last row empty for scoring and some space for any text, scores, etc.<details><summary>Show details</summary>1) Make a grid: Using eventListeners and functions</details>
+4) Cells:<details><summary>Show details</summary>First bottom row will be the spaceship and after for the invaders. With class for the ship and invaders.
+The rest of cells will be for invaders and shooting laser. All with one column apart so that you can miss. Last row empty for scoring and some space for any text, scores, etc.</details>
 </p>
 
 5) Main evenLinstener:
@@ -68,5 +74,3 @@ Show details
 
 - Making the aliens got crazy!
 ![Screenshot from 2021-08-31 10-14-38](https://user-images.githubusercontent.com/83907621/131476676-f798345c-8f7c-448d-9b96-9b0ee275c23e.png)
-
-
