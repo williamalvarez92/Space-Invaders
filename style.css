@@ -54,7 +54,7 @@ a{color: rgb(8, 59, 77);}
   flex-direction: column;
 }
 
-.grid-container {
+.main-container {
     display: flex;
     padding-left: 10%;
     /* justify-content: center;

@@ -247,6 +247,7 @@ function init() {
     leftbtn.addEventListener('click', leftbtnmove)
     rightbtn.addEventListener('click', rightbtnmove)
     shootbtn.addEventListener('click', shootbtnmove)
+    
     function leftbtnmove () {
       removeShip(currentShipPos)
       currentShipPos--
@@ -304,16 +305,6 @@ function init() {
       }
     }
 
-    // ## EVIL LASER ##
-
-    function addEvilLaser(index) {
-      cells[index].classList.add(boom)
-    }
-
-    function removeEvilLaser(index) {
-      cells[index].classList.remove(boom)
-    }
-
     function laserMover(index) {
       setInterval(function interLaser() {
         if (index >= 0 && cells[index].classList.contains('smallenemy1') === true && cells[index].classList.contains('bam') === true ||
@@ -334,6 +325,17 @@ function init() {
         }
       }, 100)
     }
+
+    // ## EVIL LASER ##
+
+    function addEvilLaser(index) {
+      cells[index].classList.add(boom)
+    }
+
+    function removeEvilLaser(index) {
+      cells[index].classList.remove(boom)
+    }
+
 
     const evilLaserActId = setInterval(evilLaserRandom, 500)
 
@@ -380,9 +382,9 @@ function init() {
     addShip(currentShipPos)
     enemyMover()
     evilLaserRandom()
-    cleaner()
     addBlocks()
-
+    cleaner()
+    
     // ================== ## GAME OVER ## ==========================
 
     function gameOver() {
@@ -398,7 +400,6 @@ function init() {
         cells[11].innerText = 'WIN'
       }
     }
-    
     restartBtn.addEventListener('click', restart)
   }
   startBtn.addEventListener('click', startGame)
