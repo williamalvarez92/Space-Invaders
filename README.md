@@ -73,7 +73,7 @@ function gridCreator() {
 </details>
 </p>
 
-#####🔵 Classes:
+##### 🔵 Classes:
 <details><summary>Show details</summary>Using classes to refer to the elements: ship, aliens, blocks and lasers. By doing this, the game is able to reference HTML elements style them and use them in the functions later on.
 
 ```
