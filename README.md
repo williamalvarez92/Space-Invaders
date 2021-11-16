@@ -200,12 +200,6 @@ For example here is the ship, where currentShipPos will be used to determine the
 </details>
 </p>
 
-##### 🔵 Extras to add to the game:
-<details><summary>Show details</summary>
-      -Music
-      -Leading board
-      -Cool themes (an extra div where you can choose aliens or upload your own image)</details>
-
 #### Wins 🥇
 
 I loved the fact that a simple JavaScrip file is enough to create a game from scratch.
