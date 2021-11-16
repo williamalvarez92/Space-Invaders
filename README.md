@@ -214,35 +214,40 @@ Building this game gave me the motivation needed to follow coding and the confid
 
 #### Challenges  🥋
 
-The rendering: I had a problem at the start with rendering. I tried to add an enemy the same way I would add the ship. But this made it almost impossible, as there will always be an enemy added even though the class was deleted.
+- The rendering: I had a problem at the start with rendering. I tried to add an enemy the same way I would add the ship. But this made it almost impossible, as there will always be an enemy added even though the class was deleted.
 
+<details><summary>Show details</summary>
 
-This is the code from my codecementry:
+For example here is the code from my code cementry:
 ```
 function addEnemy(startingPoint) {
-   for (let i = 0; i < width * rowsWithEnemies; i++) {
-       if (startingPoint % 2 === 1) {
+    for (let i = 0; i < width * rowsWithEnemies; i++) {
+        if (startingPoint % 2 === 1) {
 
-           if (i < width && i % width <= columnsWithEnemies) {
-               cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(smallenemy1)
-           } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
-               cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(middleenemy1)
-           } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
-               cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(bigenemy1)
-           }
-       } else if (startingPoint % 2 === 0) {
-           if (i < width && i % width <= columnsWithEnemies) {
-               cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(smallenemy2)
-           } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
-               cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(middleenemy2)
-           } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
-               cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(bigenemy2)
-           }
-       }
-   }
+            if (i < width && i % width <= columnsWithEnemies) {
+                cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(smallenemy1)
+            } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
+                cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(middleenemy1)
+            } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
+                cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(bigenemy1)
+            }
+        } else if (startingPoint % 2 === 0) {
+            if (i < width && i % width <= columnsWithEnemies) {
+                cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(smallenemy2)
+            } else if (i >= width && i < width * 3 && i % width <= columnsWithEnemies) {
+                cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(middleenemy2)
+            } else if (i >= width * 3 && i < width * 6 && i % width <= columnsWithEnemies) {
+                cells[currentEnemyPos + i].classList.add(enemy), cells[currentEnemyPos + i].classList.add(bigenemy2)
+            }
+        }
+    }
 }
+
 ```
-Finding more efficient ways for the moving of the components. Right now, the way it is structured is long and laggy.
+
+</details>
+      
+- Finding more efficient ways for the moving of the components. Right now, the way it is structured is long and laggy.
 
 #### Key Learnings 📖
 
