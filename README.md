@@ -4,21 +4,21 @@ This is my first solo project. I have played the game when I was a kid many time
 
 #### <a href='https://williamalvarez92.github.io/Space-Invaders/'>CLICK HERE TO PLAY!</a> 
 
-## Overview 
-
 #### LANGUAGES AND TOOLS USED:
-- Vanilla JavaScript<details><summary>Code used</summary>-Functions
--EventListeners 
--IF and OR statements
--For loops
--Numerous methods (.push, .forEach, etc...)
--Responsive document elements
+- Vanilla JavaScript<details><summary>Code used</summary>
+      - Functions</br>
+      - EventListeners </br>
+-IF and OR statements</br>
+-For loops</br>
+-Numerous methods (.push, .forEach, etc...)</br>
+-Responsive document elements</br>
 -And more</details>
 - CSS
 - HTML
 - GIT
 - GIT PAGES
 
+## Overview 
 
 There is no installations or dependencies required for this project. The project consists of three files: `app.js` `style.css` `index.html`.
 
@@ -27,7 +27,7 @@ There is no installations or dependencies required for this project. The project
 
 #### Planning 📊
 
-I made a small sketch on paper first on how I wanted to look and any extra functionality I wanted. Then lay out how the code would be structured and which tools I was going to use.
+I made a small sketch on paper first on how I wanted it to look and any extra functionality I wanted. I then laid out how the code would be structured and which tools I was going to use.
 
 Regarding styling, I wanted to make it a Mario themed game. However, after reading more about the game I decided to make it a tribute to the game, mimicking how it looked.
 
@@ -58,7 +58,7 @@ function gridCreator() {
 </p>
 
 ##### 🔵 Layout:
-<details><summary>Show details</summary>Defining the main body structure. In this case. The basic structure is of 2 divisions inside the HTML file. These divisions are the grid and the right container where the stats the intro and controls are.
+<details><summary>Show details</summary>Defining the main body structure. In this case. The basic structure is of 2 divisions inside the HTML file. These divisions are the grid and the right container where the stats, the intro and controls are.
 
 ```
         <section class="main-container">
@@ -72,7 +72,7 @@ function gridCreator() {
                       <button id='restart' class='buttons' onClick="window.location.reload()" onClick="this.disabled = true">RESTART</button>
                     </div>
                 </div>
-                <div class="points-board" id='writing'>Developed in 1978 by Tomohiro Nishikado, Space Invaders was the first shooter arcade in history. Tomohiro wanted to develop a war tank arcade however after some work done, he pivoted into the arcade we all know. That is why the spaceship looks similar to a tank. <a href='https://en.wikipedia.org/wiki/Space_Invaders'>Find out more</a></div>
+                <div class="points-board" id='writing'>Developed in 1978 by Tomohiro Nishikado, Space Invaders was the first shooter arcade in history. Tomohiro wanted to develop a war tank arcade however after some work was done, he pivoted into the arcade we all know. That is why the spaceship looks similar to a tank. <a href='https://en.wikipedia.org/wiki/Space_Invaders'>Find out more</a></div>
                 <div class="controllers">
                       <button class='buttons' id='left'>👈</button>
                       <button class='buttons' id='shoot'>💥</button>
@@ -212,7 +212,7 @@ Building this game gave me the motivation needed to follow coding and the confid
 
 <details><summary>Show details</summary>
 
-For example here is the code from my code cementry:
+For example here is the code from my code cemetery:
 ```
 function addEnemy(startingPoint) {
     for (let i = 0; i < width * rowsWithEnemies; i++) {
@@ -250,12 +250,12 @@ I learnt a lot about classes, how they can be used in JavaScript to change the w
 Also, basic functions. I learnt how to structure them so that they look clear and easy to read, for me and for anyone using the code.
 
 #### Future Features ⭐
-1) Improve the score rating
+1) Improve the score rating.
 2) Add event listeners and styling to the barricades so that they can also get hit.
-3) Add a high scoreboard and save scores from previous plays
-4) Add different themes
-5) Make the button controls more mobile-friendly
-6) Sound
+3) Add a high scoreboard and save scores from previous plays.
+4) Add different themes.
+5) Make the button controls more mobile-friendly.
+6) Sound.
 
 #### Bugs 🐛
 1) Removing enemies that are dead properly.
@@ -272,6 +272,8 @@ Hope you had the chance of playing the game and that you enjoyed it!
 I am always welcome to any comments, so do not hesitate to contact me if you want to comment or suggest anything.
 
 Check my GitHub account: <a href='https://github.com/williamalvarez92'>HERE</a>
+
+
 
 
 
