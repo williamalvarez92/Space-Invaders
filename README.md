@@ -20,7 +20,7 @@ This is my first solo project. I have played the game when I was a kid many time
 
 ## Overview 
 
-There is no installations or dependencies required for this project. The project consists of three files: `app.js` `style.css` `index.html`.
+There are no installations or dependencies required for this project. The project consists of three files: `app.js` `style.css` `index.html`.
 
 
 ### Approach
@@ -185,7 +185,7 @@ function laserMover(index) {
 ##### 🔵 Rendering structure:
 <details><summary>Show details</summary>Using HTML buttons, the main function called startGame() will generate the main grid and place the components. Then the other button will activate the restart function which will reload the page.
 
-For example here is the ship, where currentShipPos will be used to determine the next position of the:
+For example here is the ship, where currentShipPos will be used to determine the next position of the ship:
 ```
   const startBtn = document.getElementById('start')
   const restartBtn = document.getElementById('restart')
@@ -261,7 +261,7 @@ Also, basic functions. I learnt how to structure them so that they look clear an
 1) Removing enemies that are dead properly.
 2) Stop shooting after hitting.
 3) The ship can shoot only after the laser hits something or leaves the grid.
-4) The styling of the aliens after the move down a row.
+4) The styling of the aliens after they move down a row.
 5) The way lives are counted.
 
 #### Memorable moments<details><summary>Show pictures</summary>Experimenting with different type of enemies formation.![Screenshot from 2021-08-27 19-40-00](https://user-images.githubusercontent.com/83907621/131187338-7f6fd9f0-0795-4a4e-b882-26e1293897b7.png)![Screenshot from 2021-08-27 19-22-47](https://user-images.githubusercontent.com/83907621/131187427-36093215-a01b-4739-8488-fc231bd11f87.png)![Screenshot from 2021-08-27 19-06-31](https://user-images.githubusercontent.com/83907621/131187478-60b79c70-8055-4515-87ed-a0ef0871ddf5.png)![Screenshot from 2021-08-27 19-25-53](https://user-images.githubusercontent.com/83907621/131187641-06042113-1031-4ea3-979b-0d3757ca335b.png)![Screenshot from 2021-08-30 20-17-43](https://user-images.githubusercontent.com/83907621/131393025-2ed31bea-0fb2-46a5-a693-eda0e42f7dd6.png)Making the aliens got crazy!![Screenshot from 2021-08-31 10-14-38](https://user-images.githubusercontent.com/83907621/131476676-f798345c-8f7c-448d-9b96-9b0ee275c23e.png)
@@ -271,9 +271,5 @@ Hope you had the chance of playing the game and that you enjoyed it!
 
 I am always welcome to any comments, so do not hesitate to contact me if you want to comment or suggest anything.
 
-Check my GitHub account: <a href='https://github.com/williamalvarez92'>HERE</a>
-
-
-
-
+Check my GitHub account: <a href='https://github.com/williamalvarez92'>HERE</>
 
