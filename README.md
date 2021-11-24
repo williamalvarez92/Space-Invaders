@@ -271,5 +271,5 @@ Hope you had the chance of playing the game and that you enjoyed it!
 
 I am always welcome to any comments, so do not hesitate to contact me if you want to comment or suggest anything.
 
-Check my GitHub account: <a href='https://github.com/williamalvarez92'>HERE</>
+Check my GitHub account: <a href='https://github.com/williamalvarez92'>HERE</a>
 
